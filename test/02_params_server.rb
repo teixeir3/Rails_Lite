@@ -1,7 +1,10 @@
 require 'active_support/core_ext'
 require 'json'
 require 'webrick'
-require 'rails_lite'
+require_relative '../lib/rails_lite'
+require 'debugger'
+require 'better_errors'
+require 'binding_of_caller'
 
 # http://www.ruby-doc.org/stdlib-2.0/libdoc/webrick/rdoc/WEBrick.html
 # http://www.ruby-doc.org/stdlib-2.0/libdoc/webrick/rdoc/WEBrick/HTTPRequest.html
@@ -14,6 +17,7 @@ class ExampleController < ControllerBase
   def create
     render_content(params.to_s, "text/json")
   end
+
 
   def new
     page = <<-END

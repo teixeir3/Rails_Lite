@@ -10,7 +10,7 @@ class ControllerBase
 
   # setup the controller
   def initialize(req, res, route_params = {})
-    @req, @res, @params = req, res, route_params
+    @req, @res, @params = req, res, Params.new(req)
     @already_built_response = false
   end
 
