@@ -6,7 +6,7 @@ class Params
   # 2. post body
   # 3. route params
   def initialize(req, route_params = {})
-    @params = {}
+    @params = route_params
 
     parse_www_encoded_form(req.body) unless req.body.nil?
     parse_www_encoded_form(req.query_string) unless req.query_string.nil?

@@ -10,7 +10,7 @@ class ControllerBase
 
   # setup the controller
   def initialize(req, res, route_params = {})
-    @req, @res, @params = req, res, Params.new(req)
+    @req, @res, @params = req, res, Params.new(req, route_params)
     @already_built_response = false
   end
 
@@ -64,5 +64,10 @@ class ControllerBase
 
   # use this with the router to call action_name (:index, :show, :create...)
   def invoke_action(name)
+    if self.methods.include?(name)
+      self.send(name)
+    else
+      render_content(name, "text/html") unless already_rendered?
+    end
   end
 end
