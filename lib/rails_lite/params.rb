@@ -26,6 +26,8 @@ class Params
   # user[address][street]=main&user[address][zip]=89436
   # should return
   # { "user" => { "address" => { "street" => "main", "zip" => "89436" } } }
+  # parse_www_encoded_form("user[address][street]=main&user[address][zip]=89436")
+
   def parse_www_encoded_form(www_encoded_form)
     # parse a URI encoded string, setting keys and values in the @params hash.
 
@@ -47,7 +49,9 @@ class Params
 
     keys_arr.each do |val|
       if level.has_key?(val)
-        level[val] = "something cool"
+        level = level[val]
+        # next
+        # level[val] = "wtf"
       elsif val == keys_arr.last
         level[val] = nested_val
       else
